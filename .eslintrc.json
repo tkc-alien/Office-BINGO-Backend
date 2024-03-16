@@ -1,0 +1,49 @@
+{
+  "env": {
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "prettier" // Prettierとの競合ルールをOFFにする（他の設定を上書きするため、最終行に記述する必要有り）
+  ],
+  "ignorePatterns": [],
+  "parserOptions": {
+    "project": "tsconfig.json",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint/eslint-plugin",
+    "simple-import-sort", // import文の自動整列を実現
+    "import", // 上記プラグインを拡張（自動整列のルールを追加）
+    "unused-imports" // 未使用のimport文を削除
+  ],
+  "rules": {
+    "simple-import-sort/imports": "error", // importのsortルールを設定
+    "simple-import-sort/exports": "error", // exportのsortルールを設定
+    "import/first": "error", // すべてのimportがファイルの先頭にあることを確認
+    "import/newline-after-import": "error", // import後に改行があることを確認
+    "import/no-duplicates": "error", // 同じファイルのimportをマージ
+    "unused-imports/no-unused-imports": "error", // 未使用のimport文を削除
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": ["./", "../"]
+      }
+    ], // 相対インポートを禁止
+    "no-console": "error", // console.logの使用
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-unsafe-argument": "off"
+  }
+}
