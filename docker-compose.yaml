@@ -1,0 +1,17 @@
+version: "3"
+services:
+  db:
+    container_name: office-bingo-db
+    image: postgres:16.2-alpine
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      TZ: Asia/Tokyo
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - ${DB_PORT}:5432
+volumes:
+  db-data:
+    driver: local
