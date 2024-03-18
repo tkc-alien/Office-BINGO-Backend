@@ -4,8 +4,12 @@
 
 ### dependencies
 
-| パッケージ名 | カテゴリ | 用途 |
-| ------------ | -------- | ---- |
+| パッケージ名         | カテゴリ | 用途               |
+| -------------------- | -------- | ------------------ |
+| @nestjs/typeorm      | ORM      | ORM                |
+| typeorm              | ORM      | ORM                |
+| pg                   | ORM      | Postgresql         |
+| @nestjs/mapped-types | util     | 型のパラメータ補完 |
 
 ### dev dependencies
 
@@ -17,6 +21,3 @@
 | eslint-plugin-import             | lint     | import/exportのリンタープラグイン |
 | eslint-plugin-simple-import-sort | lint     | importを自動ソート                |
 | eslint-plugin-unused-imports     | lint     | 未使用import文を自動削除          |
-| @nestjs/typeorm                  | ORM      | ORM                               |
-| typeorm                          | ORM      | ORM                               |
-| pg                               | ORM      | Postgresql                        |
