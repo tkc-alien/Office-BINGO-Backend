@@ -10,6 +10,7 @@ import {
   SheetSquareEntity,
   UserEntity,
 } from "@/entity";
+import { AuthService } from "@/feature/auth/auth.service";
 
 @Module({
   imports: [
@@ -26,6 +27,6 @@ import {
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AuthService],
 })
 export class AppModule {}
