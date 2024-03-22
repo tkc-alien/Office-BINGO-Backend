@@ -4,6 +4,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  Index,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -12,6 +13,7 @@ import {
 import { SheetEntity } from "@/entity/sheet.entity";
 
 @Entity("users")
+@Index("IDX_users_uid", ["uid"], { unique: true, where: "deleted_at IS NULL" })
 export class UserEntity extends BaseEntity {
   @PrimaryGeneratedColumn({ name: "id" })
   readonly id: number;
