@@ -1,16 +1,18 @@
-import { Module } from "@nestjs/common";
+import { Module, ValidationPipe } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
+import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from "@nestjs/core";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
-import { AppController } from "@/app.controller";
-import { AppService } from "@/app.service";
 import {
   LotteryEntity,
   SheetEntity,
   SheetSquareEntity,
   UserEntity,
 } from "@/entity";
-import { AuthService } from "@/feature/auth/auth.service";
+import { AuthModule } from "@/feature/auth/auth.module";
+import { UserModule } from "@/feature/user/user.module";
+import { QueryFailedFilter } from "@/filter/query-failed.filter";
+import { ResponseInterceptor } from "@/interceptor/response.interceptor";
 
 @Module({
   imports: [
@@ -25,8 +27,13 @@ import { AuthService } from "@/feature/auth/auth.service";
       synchronize: true,
       entities: [LotteryEntity, SheetSquareEntity, SheetEntity, UserEntity],
     }),
+    AuthModule,
+    UserModule,
   ],
-  controllers: [AppController],
-  providers: [AppService, AuthService],
+  providers: [
+    { provide: APP_PIPE, useClass: ValidationPipe },
+    { provide: APP_FILTER, useClass: QueryFailedFilter },
+    { provide: APP_INTERCEPTOR, useClass: ResponseInterceptor },
+  ],
 })
 export class AppModule {}
