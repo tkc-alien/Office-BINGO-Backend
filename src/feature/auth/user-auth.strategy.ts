@@ -4,10 +4,14 @@ import { Strategy } from "passport-http-bearer";
 
 import { UserEntity } from "@/entity/user.entity";
 import { AuthService } from "@/feature/auth/auth.service";
+import { UserService } from "@/feature/user/user.service";
 
 @Injectable()
-export class UserAuthStrategy extends PassportStrategy(Strategy) {
-  constructor(private authService: AuthService) {
+export class UserAuthStrategy extends PassportStrategy(Strategy, "user") {
+  constructor(
+    private authService: AuthService,
+    private userService: UserService
+  ) {
     super();
   }
 
@@ -20,13 +24,8 @@ export class UserAuthStrategy extends PassportStrategy(Strategy) {
     // BearerToken -> UID
     const uid = await this.authService.verify(bearerToken);
     // UID -> Userエンティティ
-    // const user = await this.userService.findByUid(uid);
+    const user = await this.userService.findOneByUid(uid);
     // 返却
-    // return user;
-
-    // FIXME: UserServiceを作って修正する
-    const user = new UserEntity();
-    user.uid = uid;
     return user;
   }
 }

@@ -5,4 +5,4 @@ import { AuthGuard } from "@nestjs/passport";
  * Firebase認証のガードクラス
  */
 @Injectable()
-export class UserAuthGuard extends AuthGuard("bearer") {}
+export class UserAuthGuard extends AuthGuard("user") {}

@@ -5,7 +5,7 @@ import { Strategy } from "passport-http-bearer";
 import { AuthService } from "@/feature/auth/auth.service";
 
 @Injectable()
-export class UidAuthStrategy extends PassportStrategy(Strategy) {
+export class UidAuthStrategy extends PassportStrategy(Strategy, "uid") {
   constructor(private authService: AuthService) {
     super();
   }
