@@ -1,4 +1,5 @@
 import { NestFactory } from "@nestjs/core";
+import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import admin from "firebase-admin";
 
 import { AppModule } from "@/app.module";
@@ -15,6 +16,17 @@ async function bootstrap() {
 
   // App初期化
   const app = await NestFactory.create(AppModule);
+
+  // Swagger設定
+  const config = new DocumentBuilder()
+    .setTitle("OfficeBINGO API")
+    .setVersion("0.0")
+    .addBearerAuth()
+    .addTag("users")
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup("api", app, document);
+
   await app.listen(3000);
 }
 bootstrap();
