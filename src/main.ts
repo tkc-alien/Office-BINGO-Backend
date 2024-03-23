@@ -22,6 +22,7 @@ async function bootstrap() {
     .setTitle("OfficeBINGO API")
     .setVersion("0.0")
     .addBearerAuth()
+    .addTag("lotteries")
     .addTag("users")
     .addTag("sheets")
     .build();

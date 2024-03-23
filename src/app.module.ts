@@ -10,6 +10,7 @@ import {
   UserEntity,
 } from "@/entity";
 import { AuthModule } from "@/feature/auth/auth.module";
+import { LotteryModule } from "@/feature/lottery/lottery.module";
 import { SheetModule } from "@/feature/sheet/sheet.module";
 import { SheetSquareModule } from "@/feature/sheet-square/sheet-square.module";
 import { UserModule } from "@/feature/user/user.module";
@@ -30,6 +31,7 @@ import { ResponseInterceptor } from "@/interceptor/response.interceptor";
       entities: [LotteryEntity, SheetSquareEntity, SheetEntity, UserEntity],
     }),
     AuthModule,
+    LotteryModule,
     UserModule,
     SheetModule,
     SheetSquareModule,
