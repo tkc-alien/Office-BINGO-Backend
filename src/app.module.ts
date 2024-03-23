@@ -7,12 +7,14 @@ import {
   LotteryEntity,
   SheetEntity,
   SheetSquareEntity,
+  SpotEntity,
   UserEntity,
 } from "@/entity";
 import { AuthModule } from "@/feature/auth/auth.module";
 import { LotteryModule } from "@/feature/lottery/lottery.module";
 import { SheetModule } from "@/feature/sheet/sheet.module";
 import { SheetSquareModule } from "@/feature/sheet-square/sheet-square.module";
+import { SpotModule } from "@/feature/spot/spot.module";
 import { UserModule } from "@/feature/user/user.module";
 import { QueryFailedFilter } from "@/filter/query-failed.filter";
 import { ResponseInterceptor } from "@/interceptor/response.interceptor";
@@ -28,13 +30,20 @@ import { ResponseInterceptor } from "@/interceptor/response.interceptor";
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       synchronize: true,
-      entities: [LotteryEntity, SheetSquareEntity, SheetEntity, UserEntity],
+      entities: [
+        LotteryEntity,
+        SheetSquareEntity,
+        SheetEntity,
+        SpotEntity,
+        UserEntity,
+      ],
     }),
     AuthModule,
     LotteryModule,
     UserModule,
     SheetModule,
     SheetSquareModule,
+    SpotModule,
   ],
   providers: [
     { provide: APP_PIPE, useClass: ValidationPipe },

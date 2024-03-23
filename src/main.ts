@@ -25,6 +25,7 @@ async function bootstrap() {
     .addTag("lotteries")
     .addTag("users")
     .addTag("sheets")
+    .addTag("spots")
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("api", app, document);
