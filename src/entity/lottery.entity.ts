@@ -19,10 +19,10 @@ export class LotteryEntity extends BaseEntity {
 
   @ManyToOne(() => UserEntity)
   @JoinColumn({ name: "user_id" })
-  readonly userId: number;
+  user: UserEntity;
 
   @Column({ name: "number" })
-  readonly number: number;
+  number: number;
 
   @CreateDateColumn({ name: "created_at" })
   readonly createdAt: Date;

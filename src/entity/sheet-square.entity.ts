@@ -23,17 +23,20 @@ export class SheetSquareEntity extends BaseEntity {
 
   @ManyToOne(() => SheetEntity, (sheet) => sheet.squares)
   @JoinColumn({ name: "sheet_id" })
-  readonly sheet: SheetEntity;
+  sheet: SheetEntity;
 
   @Column({ name: "x_pos" })
-  readonly xPos: number;
+  xPos: number;
 
   @Column({ name: "y_pos" })
-  readonly yPos: number;
+  yPos: number;
+
+  @Column({ name: "number" })
+  number: number;
 
   @OneToOne(() => LotteryEntity, { nullable: true })
   @JoinColumn({ name: "lottery_id" })
-  readonly lottery: LotteryEntity;
+  lottery: LotteryEntity;
 
   @CreateDateColumn({ name: "created_at" })
   readonly createdAt: Date;

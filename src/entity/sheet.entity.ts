@@ -18,12 +18,12 @@ export class SheetEntity extends BaseEntity {
   @PrimaryGeneratedColumn({ name: "id" })
   readonly id: number;
 
-  @ManyToOne(() => UserEntity, (user) => user.sheets)
+  @ManyToOne(() => UserEntity, (user) => user.sheets, { nullable: false })
   @JoinColumn({ name: "user_id" })
-  readonly user: UserEntity;
+  user: UserEntity;
 
   @OneToMany(() => SheetSquareEntity, (square) => square.sheet)
-  readonly squares: SheetSquareEntity[];
+  squares: SheetSquareEntity[];
 
   @CreateDateColumn({ name: "created_at" })
   readonly createdAt: Date;
