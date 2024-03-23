@@ -4,19 +4,22 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  Index,
   JoinColumn,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
-  Unique,
   UpdateDateColumn,
 } from "typeorm";
 
 import { LotteryEntity } from "@/entity/lottery.entity";
 import { SheetEntity } from "@/entity/sheet.entity";
 
-@Unique(["sheet", "xPos", "yPos"])
 @Entity("sheet_squares")
+@Index("IDX_sheet_squares_sheet_id_x_pos_y_pos", ["sheet", "xPos", "yPos"], {
+  unique: true,
+  where: "deleted_at IS NULL",
+})
 export class SheetSquareEntity extends BaseEntity {
   @PrimaryGeneratedColumn({ name: "id" })
   readonly id: number;
