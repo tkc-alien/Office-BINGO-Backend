@@ -10,6 +10,8 @@ import {
   UserEntity,
 } from "@/entity";
 import { AuthModule } from "@/feature/auth/auth.module";
+import { SheetModule } from "@/feature/sheet/sheet.module";
+import { SheetSquareModule } from "@/feature/sheet-square/sheet-square.module";
 import { UserModule } from "@/feature/user/user.module";
 import { QueryFailedFilter } from "@/filter/query-failed.filter";
 import { ResponseInterceptor } from "@/interceptor/response.interceptor";
@@ -29,6 +31,8 @@ import { ResponseInterceptor } from "@/interceptor/response.interceptor";
     }),
     AuthModule,
     UserModule,
+    SheetModule,
+    SheetSquareModule,
   ],
   providers: [
     { provide: APP_PIPE, useClass: ValidationPipe },
